@@ -7,6 +7,6 @@ export class HelloWorldController {
     // Acessando a variável de ambiente 'BRANCH_NAME'
     const mode = process.env.MODE || 'branch desconhecida'; // Valor padrão caso a variável não esteja definida
 
-    return `Hello World! A branch atual é: ${mode}`;
+    return `Hello World! A branch atual é : ${mode}`;
   }
 }

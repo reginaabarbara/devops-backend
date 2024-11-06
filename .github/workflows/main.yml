@@ -16,6 +16,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3 
 
+    - name: Extract Medatada
+      id: meta
+      uses: docker/metadata-action@v5.5.1
+      with:
+       images: reginaabarbara/devops-backend    
+
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2 
@@ -26,12 +32,10 @@ jobs:
         username: ${{ secrets.USER }} 
         password: ${{ secrets.PASSWD }}  
 
-    - name: Build Docker image
-      run: |
-        docker build -t ${{ secrets.USER }}/devops-backend:$GITHUB_SHA .  # Build da imagem
-        docker tag ${{ secrets.USER }}/devops-backend:$GITHUB_SHA ${{ secrets.USER }}/devops-backend:latest  # Marca a imagem como "latest"
-
-    - name: Push Docker image
-      run: |
-        docker push ${{ secrets.USER }}/devops-backend:$GITHUB_SHA  # Faz o push da imagem com o sha do commit
-        docker push ${{ secrets.USER }}/devops-backend:latest  # Push da imagem com a tag "latest"
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v6.9.0
+      with:
+          push: true
+          context: .
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{  steps.meta.outputs.labels  }}

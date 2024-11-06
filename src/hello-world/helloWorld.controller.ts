@@ -4,7 +4,7 @@ dotenv.config();
 
 @Controller('v1')
 export class HelloWorldController {
-  @Get('helloWorld')
+  @Get('helloworld')
   getHelloWorld(): string {
   
     const mode = process.env.MODE || 'branch desconhecida'; 

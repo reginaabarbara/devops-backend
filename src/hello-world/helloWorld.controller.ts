@@ -1,4 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 @Controller('v1')
 export class HelloWorldController {
@@ -6,7 +8,7 @@ export class HelloWorldController {
   getHelloWorld(): string {
     // Acessando a variável de ambiente 'BRANCH_NAME'
     const mode = process.env.MODE || 'branch desconhecida'; // Valor padrão caso a variável não esteja definida
-
-    return `Hello World! A branch atual é : ${mode}`;
+    console.log('Variável mode :', process.env.mode);
+    return `Hello World! A branch atual é : `;
   }
 }

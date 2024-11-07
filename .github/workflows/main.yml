@@ -36,7 +36,7 @@ jobs:
       uses: docker/build-push-action@v6.9.0
       with:
         build-args: |
-          mode=${{ github.ref_name }}
+          MODE=${{ github.ref_name }}
         push: true
         context: .
         tags: ${{ steps.meta.outputs.tags }}

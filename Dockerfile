@@ -9,14 +9,11 @@ RUN npm install
 
 COPY . .
 
-# Definir um argumento de build para receber o nome da branch
+
 ARG MODE
 
-# Definir uma variável de ambiente no contêiner com o valor da branch
 ENV MODE=${MODE}
 
-
-# Usar o git para pegar a branch atual, se o ARG BRANCH_NAME não for passado
 RUN echo "A branch atual é: ${MODE}"
 
 RUN npm run build

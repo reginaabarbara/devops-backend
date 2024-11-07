@@ -8,7 +8,7 @@ export class HelloWorldController {
   getHelloWorld(): string {
   
     const mode = process.env.MODE || 'branch desconhecida'; 
-    console.log('Variável mode :', process.env.mode);
+    console.log('Variável mode :', process.env.MODE);
     return `Hello World! A branch atual é : ${mode}`;
   }
 }
